@@ -1,0 +1,15 @@
+{
+    "name": "metaedit.invertedecho",
+    "description": "Modify the metadata of your songs",
+    "architecture": "@CLICK_ARCH@",
+    "title": "MetaEdit",
+    "hooks": {
+        "metaedit": {
+            "apparmor": "metaedit.apparmor",
+            "desktop":  "metaedit.desktop"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "Jakob Stechow <jakob.stechow@pm.me>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
