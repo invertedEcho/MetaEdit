@@ -27,6 +27,7 @@ MainView {
     objectName: 'mainView'
     applicationName: 'metaedit.invertedecho'
     automaticOrientation: true
+    property variant songInfo: ({})
 
     width: units.gu(45)
     height: units.gu(75)
@@ -43,7 +44,11 @@ MainView {
             anchors.fill: parent
             Label {
                 id: titleLabel
-                text: "Title of selected song"
+                text: "Title of selected song: " + songInfo.title[0]
+            }
+            Label {
+                id: artistLabel
+                text: "Artist of selected song: " + songInfo.artist[0]
             }
             Button {
                 text: "Click to select a file"
@@ -80,7 +85,10 @@ MainView {
             onStateChanged: {
                 if (picker.activeTransfer.state === ContentTransfer.Charged) {
                     if (picker.activeTransfer.items.length > 0) {
-                        titleLabel.text = String(picker.activeTransfer.items[0].url).replace("file://", "")
+                        var filePath = String(picker.activeTransfer.items[0].url).replace("file://", "")
+                        python.call("example.speak", [filePath], function( result ) {
+                            songInfo = result
+                        } )
                         pageStack.pop()
                     }
                 }

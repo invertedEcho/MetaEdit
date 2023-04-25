@@ -14,10 +14,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 from mutagen.flac import FLAC
-import mutagen
 
 def speak(text):
     something = FLAC(text)
-    title = something.get("title")
-    print(title)
-    return title
+    return dict(something)
